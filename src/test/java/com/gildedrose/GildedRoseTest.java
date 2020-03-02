@@ -78,7 +78,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_output_negative_negative_1_4_with_sulfuras_hand_of_ragnaros_negative_1_4() {
+    public void should_output_negative_1_4_with_sulfuras_hand_of_ragnaros_negative_1_4() {
         Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", -1, 4) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -88,7 +88,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_output_negative_negative_1_4_with_sulfuras_hand_of_ragnaros_negative_1_0() {
+    public void should_output_negative_1_4_with_sulfuras_hand_of_ragnaros_negative_1_0() {
         Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", -1, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
