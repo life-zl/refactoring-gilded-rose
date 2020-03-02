@@ -38,8 +38,80 @@ public class Item {
         this.quality = quality;
     }
 
+    public boolean isNamedAgedBrie() {
+        return name.equals("Aged Brie");
+    }
+
+    public boolean isNamedBackstagePasses() {
+        return name.equals("Backstage passes to a TAFKAL80ETC concert");
+    }
+
+    public boolean isNamedSulfuras() {
+        return name.equals("Sulfuras, Hand of Ragnaros");
+    }
+
+    public boolean isQualityLessThan50() {
+        return quality < 50;
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
+    }
+
+
+    public void updateQuality() {
+        if (isNamedAgedBrie() || isNamedBackstagePasses()) {
+            handleItemWhenNameIsAgedBrieOrBackstagePasses();
+        } else {
+            handleItemWhenNameIsOthers();
+        }
+        if (!isNamedSulfuras()) {
+            sellIn--;
+        }
+        if (sellIn < 0) {
+            handleItemWhenSellInLessThan0();
+        }
+    }
+
+    private void handleItemWhenNameIsOthers() {
+        if (quality > 0) {
+            if (!isNamedSulfuras()) {
+                quality--;
+            }
+        }
+    }
+
+    private void handleItemWhenNameIsAgedBrieOrBackstagePasses() {
+        if (isQualityLessThan50()) {
+            quality++;
+            if (isNamedBackstagePasses()) {
+                if (sellIn < 11) {
+                    quality++;
+                }
+                if (sellIn < 6) {
+                    quality++;
+                }
+            }
+        }
+    }
+
+    private void handleItemWhenSellInLessThan0() {
+        if (isNamedAgedBrie()) {
+            if (isQualityLessThan50()) {
+                quality++;
+            }
+        } else {
+            if (isNamedBackstagePasses()) {
+                quality = 0;
+            } else {
+                if (quality <= 0) {
+                    return;
+                }
+                if (!isNamedSulfuras()) {
+                    quality--;
+                }
+            }
+        }
     }
 }
