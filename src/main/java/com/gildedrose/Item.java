@@ -60,43 +60,19 @@ public class Item {
     }
 
 
-    public void updateQuality() {
-        if (isNamedAgedBrie() || isNamedBackstagePasses()) {
-            handleItemWhenNameIsAgedBrieOrBackstagePasses();
-        } else {
-            handleItemWhenNameIsOthers();
-        }
-        if (!isNamedSulfuras()) {
-            sellIn--;
-        }
-        if (sellIn < 0) {
-            handleItemWhenSellInLessThan0();
+    public void updateItemQuality() {
+        updateQuality();
+        updateSellIn();
+        if (isExpired()) {
+            updateQualityAfterExpiration();
         }
     }
 
-    private void handleItemWhenNameIsOthers() {
-        if (quality > 0) {
-            if (!isNamedSulfuras()) {
-                quality--;
-            }
-        }
+    public boolean isExpired() {
+        return sellIn < 0;
     }
 
-    private void handleItemWhenNameIsAgedBrieOrBackstagePasses() {
-        if (isQualityLessThan50()) {
-            quality++;
-            if (isNamedBackstagePasses()) {
-                if (sellIn < 11) {
-                    quality++;
-                }
-                if (sellIn < 6) {
-                    quality++;
-                }
-            }
-        }
-    }
-
-    private void handleItemWhenSellInLessThan0() {
+    public void updateQualityAfterExpiration() {
         if (isNamedAgedBrie()) {
             if (isQualityLessThan50()) {
                 quality++;
@@ -114,4 +90,33 @@ public class Item {
             }
         }
     }
+
+    public void updateSellIn() {
+        if (!isNamedSulfuras()) {
+            sellIn--;
+        }
+    }
+
+    public void updateQuality() {
+        if (isNamedAgedBrie() || isNamedBackstagePasses()) {
+            if (isQualityLessThan50()) {
+                quality++;
+                if (isNamedBackstagePasses()) {
+                    if (sellIn < 11) {
+                        quality++;
+                    }
+                    if (sellIn < 6) {
+                        quality++;
+                    }
+                }
+            }
+        } else {
+            if (quality > 0) {
+                if (!isNamedSulfuras()) {
+                    quality--;
+                }
+            }
+        }
+    }
+
 }
