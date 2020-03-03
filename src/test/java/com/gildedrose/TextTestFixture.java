@@ -1,7 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.entity.*;
-import com.gildedrose.factory.ItemFactory;
+import com.gildedrose.entity.Item;
 
 import static com.gildedrose.factory.ItemFactory.getInstance;
 
