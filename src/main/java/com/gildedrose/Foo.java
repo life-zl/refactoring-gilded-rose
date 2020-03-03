@@ -21,4 +21,10 @@ public class Foo extends Item {
         quality--;
     }
 
+    @Override
+    public void updateSellIn() {
+        sellIn--;
+    }
+
+
 }
