@@ -6,11 +6,6 @@ public class Sulfuras extends Item {
     }
 
     @Override
-    public boolean isNamedSulfuras() {
-        return true;
-    }
-
-    @Override
     public void updateQuality() {
 
     }

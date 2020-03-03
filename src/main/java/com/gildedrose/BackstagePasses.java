@@ -6,11 +6,6 @@ public class BackstagePasses extends Item {
     }
 
     @Override
-    public boolean isNamedBackstagePasses() {
-        return true;
-    }
-
-    @Override
     public void updateQuality() {
         if (isQualityLessThan50()) {
             quality++;
@@ -26,5 +21,10 @@ public class BackstagePasses extends Item {
     @Override
     public void updateQualityAfterExpiration() {
         quality = 0;
+    }
+
+    @Override
+    public void updateSellIn() {
+        sellIn--;
     }
 }

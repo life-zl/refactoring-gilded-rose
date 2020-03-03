@@ -6,24 +6,21 @@ public class AgedBrie extends Item {
     }
 
     @Override
-    public boolean isNamedAgedBrie() {
-        return true;
-    }
-
-    @Override
     public void updateQuality() {
         if (isQualityLessThan50()) {
             quality++;
         }
     }
 
-
-
-
     @Override
     public void updateQualityAfterExpiration() {
         if (isQualityLessThan50()) {
             quality++;
         }
+    }
+
+    @Override
+    public void updateSellIn() {
+        sellIn--;
     }
 }

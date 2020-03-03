@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Item {
+public abstract class Item {
 
     private String name;
 
@@ -18,36 +18,12 @@ public class Item {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getSellIn() {
         return sellIn;
     }
 
-    public void setSellIn(int sellIn) {
-        this.sellIn = sellIn;
-    }
-
     public int getQuality() {
         return quality;
-    }
-
-    public void setQuality(int quality) {
-        this.quality = quality;
-    }
-
-    public boolean isNamedAgedBrie() {
-        return false;
-    }
-
-    public boolean isNamedBackstagePasses() {
-        return false;
-    }
-
-    public boolean isNamedSulfuras() {
-        return false;
     }
 
     public boolean isQualityLessThan50() {
@@ -72,17 +48,10 @@ public class Item {
         return sellIn < 0;
     }
 
-    public void updateQualityAfterExpiration() {
+    public abstract void updateQualityAfterExpiration();
 
-    }
+    public abstract void updateQuality();
 
-    public void updateSellIn() {
-        if (!isNamedSulfuras()) {
-            sellIn--;
-        }
-    }
-
-    public void updateQuality() {
-    }
+    public abstract void updateSellIn();
 
 }
