@@ -1,5 +1,10 @@
 package com.gildedrose;
 
+import com.gildedrose.entity.*;
+import com.gildedrose.factory.ItemFactory;
+
+import static com.gildedrose.factory.ItemFactory.getInstance;
+
 public class TextTestFixture {
     public static void main(String[] args) {
 
@@ -13,16 +18,16 @@ public class TextTestFixture {
         builder.append("OMGHAI!").append("\n");
 
         Item[] items = new Item[]{
-                new Dexterity(10, 20),
-                new AgedBrie(2, 0),
-                new Elixir(5, 7),
-                new Sulfuras(0, 80),
-                new Sulfuras(-1, 80),
-                new BackstagePasses(15, 20),
-                new BackstagePasses(10, 49),
-                new BackstagePasses(5, 49),
-                new BackstagePasses(1, 20),
-                new Conjured(3, 6)};
+                getInstance("+5 Dexterity Vest", 10, 20),
+                getInstance("Aged Brie", 2, 0),
+                getInstance("Elixir of the Mongoose", 5, 7),
+                getInstance("Sulfuras, Hand of Ragnaros", 0, 80),
+                getInstance("Sulfuras, Hand of Ragnaros", -1, 80),
+                getInstance("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+                getInstance("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+                getInstance("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+                getInstance("Backstage passes to a TAFKAL80ETC concert", 1, 20),
+                getInstance("Conjured Mana Cake", 3, 6)};
 
         GildedRose app = new GildedRose(items);
 

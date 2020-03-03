@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.entity.Item;
+
 public class GildedRose {
     private Item[] items;
 
@@ -9,10 +11,6 @@ public class GildedRose {
 
     public Item[] getItems() {
         return items;
-    }
-
-    public void setItems(Item[] items) {
-        this.items = items;
     }
 
     public void updateQuality() {

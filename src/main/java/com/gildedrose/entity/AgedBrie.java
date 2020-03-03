@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.entity;
 
 public class AgedBrie extends Item {
     public AgedBrie(int sellIn, int quality) {

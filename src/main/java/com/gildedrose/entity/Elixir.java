@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.entity;
 
 public class Elixir extends Item {
     public Elixir(int sellIn, int quality) {

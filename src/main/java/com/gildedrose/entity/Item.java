@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.entity;
 
 public abstract class Item {
 

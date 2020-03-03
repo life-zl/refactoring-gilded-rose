@@ -1,15 +1,18 @@
 package com.gildedrose;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-
+import com.gildedrose.entity.Item;
 import org.junit.Test;
+
+import static com.gildedrose.factory.ItemFactory.getInstance;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class GildedRoseTest {
 
     @Test
     public void should_output_0_4_with_foo_1_5() {
-        Item[] items = new Item[] { new Foo(1, 5) };
+        Item[] items = new Item[] { getInstance("foo", 1, 5) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("foo", app.getItems()[0].getName());
@@ -19,7 +22,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_negative_1_3_with_foo_0_5() {
-        Item[] items = new Item[] { new Foo(0, 5) };
+        Item[] items = new Item[] { getInstance("foo", 0, 5) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("foo", app.getItems()[0].getName());
@@ -29,7 +32,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_2_5_with_aged_brie_3_4() {
-        Item[] items = new AgedBrie[] { new AgedBrie(3, 4) };
+        Item[] items = new Item[] { getInstance("Aged Brie", 3, 4) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Aged Brie", app.getItems()[0].getName());
@@ -39,7 +42,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_negative_1_6_with_aged_brie_0_4() {
-        Item[] items = new Item[] { new AgedBrie(0, 4) };
+        Item[] items = new Item[] { getInstance("Aged Brie", 0, 4) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Aged Brie", app.getItems()[0].getName());
@@ -49,7 +52,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_2_5_with_backstage_passes_to_a_tafkal80etc_concert_3_4() {
-        Item[] items = new Item[] { new BackstagePasses(3, 4) };
+        Item[] items = new Item[] { getInstance("Backstage passes to a TAFKAL80ETC concert", 3, 4) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Backstage passes to a TAFKAL80ETC concert", app.getItems()[0].getName());
@@ -59,7 +62,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_negative_1_0_with_backstage_passes_to_a_tafkal80etc_concert_0_4() {
-        Item[] items = new Item[] { new BackstagePasses(0, 4) };
+        Item[] items = new Item[] { getInstance("Backstage passes to a TAFKAL80ETC concert", 0, 4) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Backstage passes to a TAFKAL80ETC concert", app.getItems()[0].getName());
@@ -69,7 +72,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_0_4_with_sulfuras_hand_of_ragnaros_0_4() {
-        Item[] items = new Item[] { new Sulfuras(0, 4) };
+        Item[] items = new Item[] { getInstance("Sulfuras, Hand of Ragnaros", 0, 4) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Sulfuras, Hand of Ragnaros", app.getItems()[0].getName());
@@ -79,7 +82,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_negative_1_4_with_sulfuras_hand_of_ragnaros_negative_1_4() {
-        Item[] items = new Item[] { new Sulfuras( -1, 4) };
+        Item[] items = new Item[] { getInstance("Sulfuras, Hand of Ragnaros", -1, 4) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Sulfuras, Hand of Ragnaros", app.getItems()[0].getName());
@@ -89,7 +92,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_negative_1_4_with_sulfuras_hand_of_ragnaros_negative_1_0() {
-        Item[] items = new Item[] { new Sulfuras(-1, 0) };
+        Item[] items = new Item[] { getInstance("Sulfuras, Hand of Ragnaros", -1, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Sulfuras, Hand of Ragnaros", app.getItems()[0].getName());

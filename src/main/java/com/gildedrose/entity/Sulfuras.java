@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.entity;
 
 public class Sulfuras extends Item {
     public Sulfuras(int sellIn, int quality) {
