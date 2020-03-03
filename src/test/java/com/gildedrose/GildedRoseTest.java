@@ -89,7 +89,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_negative_1_4_with_sulfuras_hand_of_ragnaros_negative_1_0() {
-        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", -1, 0) };
+        Item[] items = new Item[] { new Sulfuras(-1, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Sulfuras, Hand of Ragnaros", app.getItems()[0].getName());

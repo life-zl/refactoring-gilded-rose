@@ -20,10 +20,10 @@ public class AgedBrie extends Item {
 
 
 
-//    @Override
-//    public void updateQualityAfterExpiration() {
-//        if (isQualityLessThan50()) {
-//            quality++;
-//        }
-//    }
+    @Override
+    public void updateQualityAfterExpiration() {
+        if (isQualityLessThan50()) {
+            quality++;
+        }
+    }
 }

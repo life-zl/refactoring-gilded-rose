@@ -43,11 +43,11 @@ public class Item {
     }
 
     public boolean isNamedBackstagePasses() {
-        return name.equals("Backstage passes to a TAFKAL80ETC concert");
+        return false;
     }
 
     public boolean isNamedSulfuras() {
-        return name.equals("Sulfuras, Hand of Ragnaros");
+        return false;
     }
 
     public boolean isQualityLessThan50() {
@@ -73,22 +73,7 @@ public class Item {
     }
 
     public void updateQualityAfterExpiration() {
-        if (isNamedAgedBrie()) {
-            if (isQualityLessThan50()) {
-                quality++;
-            }
-        } else {
-            if (isNamedBackstagePasses()) {
-                quality = 0;
-            } else {
-                if (quality <= 0) {
-                    return;
-                }
-                if (!isNamedSulfuras()) {
-                    quality--;
-                }
-            }
-        }
+
     }
 
     public void updateSellIn() {

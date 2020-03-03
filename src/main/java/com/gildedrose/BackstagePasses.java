@@ -14,24 +14,17 @@ public class BackstagePasses extends Item {
     public void updateQuality() {
         if (isQualityLessThan50()) {
             quality++;
-            if (isNamedBackstagePasses()) {
-                if (sellIn < 11) {
-                    quality++;
-                }
-                if (sellIn < 6) {
-                    quality++;
-                }
+            if (sellIn < 11) {
+                quality++;
+            }
+            if (sellIn < 6) {
+                quality++;
             }
         }
     }
 
-
-//
-//
-//    @Override
-//    public void updateQualityAfterExpired() {
-//        if (isQualityLessThan50()) {
-//            quality++;
-//        }
-//    }
+    @Override
+    public void updateQualityAfterExpiration() {
+        quality = 0;
+    }
 }

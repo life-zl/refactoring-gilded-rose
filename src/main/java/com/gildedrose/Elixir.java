@@ -13,5 +13,17 @@ public class Elixir extends Item {
         }
     }
 
+    @Override
+    public void updateQualityAfterExpiration() {
+        if (quality <= 0) {
+            return;
+        }
+        quality--;
+    }
+
+    @Override
+    public void updateSellIn() {
+        sellIn--;
+    }
 
 }

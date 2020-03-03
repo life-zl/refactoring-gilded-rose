@@ -13,5 +13,12 @@ public class Foo extends Item {
         }
     }
 
+    @Override
+    public void updateQualityAfterExpiration() {
+        if (quality <= 0) {
+            return;
+        }
+        quality--;
+    }
 
 }
