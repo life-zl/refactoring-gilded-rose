@@ -1,10 +1,16 @@
 package com.gildedrose;
 
-import java.util.Arrays;
-
 public class TextTestFixture {
     public static void main(String[] args) {
-        System.out.println("OMGHAI!");
+
+        String outPut = generateOutPut();
+        System.out.println(outPut);
+    }
+
+    public static String generateOutPut() {
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("OMGHAI!").append("\n");
 
         Item[] items = new Item[]{
                 new Item("+5 Dexterity Vest", 10, 20),
@@ -20,15 +26,19 @@ public class TextTestFixture {
 
         GildedRose app = new GildedRose(items);
 
-        int days = args.length > 0 ? Integer.parseInt(args[0]) + 1 : 3;
+        int days = 3;
 
         for (int i = 0; i < days; i++) {
-            System.out.println(String.format("-------- day %s --------", i));
-            System.out.println("name, sellIn, quality");
-            Arrays.stream(items).forEachOrdered(System.out::println);
-            System.out.println();
+            builder.append(String.format("-------- day %s --------", i)).append("\n");
+            builder.append("name, sellIn, quality").append("\n");
+            for (Item item : items) {
+                builder.append(item).append("\n");
+            }
+            builder.append("\n");
             app.updateQuality();
         }
+        return builder.toString();
     }
+
 
 }
