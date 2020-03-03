@@ -29,7 +29,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_2_5_with_aged_brie_3_4() {
-        Item[] items = new Item[] { new Item("Aged Brie", 3, 4) };
+        Item[] items = new AgedBrie[] { new AgedBrie(3, 4) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Aged Brie", app.getItems()[0].getName());
@@ -39,7 +39,7 @@ public class GildedRoseTest {
 
     @Test
     public void should_output_negative_1_6_with_aged_brie_0_4() {
-        Item[] items = new Item[] { new Item("Aged Brie", 0, 4) };
+        Item[] items = new Item[] { new AgedBrie(0, 4) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Aged Brie", app.getItems()[0].getName());

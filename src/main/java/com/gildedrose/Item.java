@@ -39,7 +39,7 @@ public class Item {
     }
 
     public boolean isNamedAgedBrie() {
-        return name.equals("Aged Brie");
+        return false;
     }
 
     public boolean isNamedBackstagePasses() {
