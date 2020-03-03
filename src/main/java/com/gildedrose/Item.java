@@ -4,9 +4,9 @@ public class Item {
 
     private String name;
 
-    private int sellIn;
+    protected int sellIn;
 
-    private int quality;
+    protected int quality;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
@@ -98,25 +98,6 @@ public class Item {
     }
 
     public void updateQuality() {
-        if (isNamedAgedBrie() || isNamedBackstagePasses()) {
-            if (isQualityLessThan50()) {
-                quality++;
-                if (isNamedBackstagePasses()) {
-                    if (sellIn < 11) {
-                        quality++;
-                    }
-                    if (sellIn < 6) {
-                        quality++;
-                    }
-                }
-            }
-        } else {
-            if (quality > 0) {
-                if (!isNamedSulfuras()) {
-                    quality--;
-                }
-            }
-        }
     }
 
 }
