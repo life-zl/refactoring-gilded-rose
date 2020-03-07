@@ -24,4 +24,9 @@ public class BackstageItem extends Item {
     public void updateQualityAfterSellIn() {
         quality = 0;
     }
+
+    @Override
+    public void updateSellIn() {
+        sellIn--;
+    }
 }

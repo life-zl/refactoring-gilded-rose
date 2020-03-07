@@ -10,9 +10,12 @@ public class SulfurasItem extends Item {
     }
 
     @Override
+    public void updateSellIn() {
+
+    }
+
+    @Override
     public void updateQualityBeforeSellIn() {
-
-
 
     }
 }

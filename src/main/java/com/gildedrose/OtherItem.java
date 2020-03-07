@@ -18,4 +18,9 @@ public class OtherItem extends Item {
             quality = quality - 1;
         }
     }
+
+    @Override
+    public void updateSellIn() {
+        sellIn--;
+    }
 }

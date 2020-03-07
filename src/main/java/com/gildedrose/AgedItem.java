@@ -18,4 +18,9 @@ public class AgedItem extends Item {
             quality = quality + 1;
         }
     }
+
+    @Override
+    public void updateSellIn() {
+        sellIn--;
+    }
 }
