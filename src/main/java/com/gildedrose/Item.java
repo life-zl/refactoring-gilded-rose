@@ -45,9 +45,7 @@ public abstract class Item {
 
     public void updateQuality() {
         updateQualityBeforeSellIn();
-
         updateSellIn();
-
         if (sellIn < 0) {
             updateQualityAfterSellIn();
         }
