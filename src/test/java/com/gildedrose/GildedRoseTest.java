@@ -1,100 +1,115 @@
 package com.gildedrose;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import org.junit.Test;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class GildedRoseTest {
 
-    @Test
-    public void should_output_0_4_with_foo_1_5() {
-        Item[] items = new Item[] { new OtherItem("foo", 1, 5) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("foo", app.getItems()[0].getName());
-        assertThat(app.getItems()[0].getSellIn(), is(0));
-        assertThat(app.getItems()[0].getQuality(), is(4));
+    @ParameterizedTest
+    @MethodSource({"provideAgedBries", "provideBackstagePass", "provideSulfuras", "provideRegularItems"})
+    void should_update_item_correctly(TestFixture testFixture) {
+        Item item = createItem(testFixture.name, testFixture.sellIn, testFixture.quality);
+
+        new GildedRose(new Item[]{item}).updateQuality();
+
+        Item expectedItem = createItem(testFixture.name, testFixture.updatedSellIn, testFixture.updatedQuality);
+        assertThat(item.toString()).isEqualTo(expectedItem.toString());
     }
 
-    @Test
-    public void should_output_negative_1_3_with_foo_0_5() {
-        Item[] items = new Item[] { new OtherItem("foo", 0, 5) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("foo", app.getItems()[0].getName());
-        assertThat(app.getItems()[0].getSellIn(), is(-1));
-        assertThat(app.getItems()[0].getQuality(), is(3));
+    private static Stream<TestFixture> provideAgedBries() {
+        return Stream.of(
+                TestFixture.createAgedBrie(2, 0, 1, 1),
+                TestFixture.createAgedBrie(2, 49, 1, 50),
+                TestFixture.createAgedBrie(2, 50, 1, 50),
+                TestFixture.createAgedBrie(2, 51, 1, 51),
+                TestFixture.createAgedBrie(0, 20, -1, 22),
+                TestFixture.createAgedBrie(-1, 20, -2, 22),
+                TestFixture.createAgedBrie(-1, 51, -2, 51)
+        );
     }
 
-    @Test
-    public void should_output_2_5_with_aged_brie_3_4() {
-        Item[] items = new Item[] { new AgedItem("Aged Brie", 3, 4) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("Aged Brie", app.getItems()[0].getName());
-        assertThat(app.getItems()[0].getSellIn(), is(2));
-        assertThat(app.getItems()[0].getQuality(), is(5));
+    private static Stream<TestFixture> provideBackstagePass() {
+        return Stream.of(
+                TestFixture.createBackstagePass(15, 20, 14, 21),
+                TestFixture.createBackstagePass(10, 45, 9, 47),
+                TestFixture.createBackstagePass(9, 45, 8, 47),
+                TestFixture.createBackstagePass(10, 49, 9, 50),
+                TestFixture.createBackstagePass(10, 50, 9, 50),
+                TestFixture.createBackstagePass(5, 49, 4, 50),
+                TestFixture.createBackstagePass(5, 45, 4, 48),
+                TestFixture.createBackstagePass(1, 20, 0, 23),
+                TestFixture.createBackstagePass(0, 20, -1, 0)
+        );
     }
 
-    @Test
-    public void should_output_negative_1_6_with_aged_brie_0_4() {
-        Item[] items = new Item[] { new AgedItem("Aged Brie", 0, 4) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("Aged Brie", app.getItems()[0].getName());
-        assertThat(app.getItems()[0].getSellIn(), is(-1));
-        assertThat(app.getItems()[0].getQuality(), is(6));
+    private static Stream<TestFixture> provideSulfuras() {
+        return Stream.of(
+                TestFixture.createSulfuras(0, 80, 0, 80),
+                TestFixture.createSulfuras(-1, 80, -1, 80),
+                TestFixture.createSulfuras(-1, 50, -1, 50),
+                TestFixture.createSulfuras(-1, 1, -1, 1),
+                TestFixture.createSulfuras(-2, 1, -2, 1)
+        );
     }
 
-    @Test
-    public void should_output_2_5_with_backstage_passes_to_a_tafkal80etc_concert_3_4() {
-        Item[] items = new Item[] { new BackstageItem("Backstage passes to a TAFKAL80ETC concert", 3, 4) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.getItems()[0].getName());
-        assertThat(app.getItems()[0].getSellIn(), is(2));
-        assertThat(app.getItems()[0].getQuality(), is(7));
+    private static Stream<TestFixture> provideRegularItems() {
+        return Stream.of(
+                TestFixture.createRegular("+5 Dexterity Vest", 10, 20, 9, 19),
+                TestFixture.createRegular("Elixir of the Mongoose", 2, 0, 1, 0),
+                TestFixture.createRegular("Conjured Mana Cake", 3, 6, 2, 5),
+                TestFixture.createRegular("Conjured Mana Cake", 3, 51, 2, 50),
+                TestFixture.createRegular("1664 Beer", 0, 6, -1, 4),
+                TestFixture.createRegular("1664 Beer", -1, 6, -2, 4)
+        );
     }
 
-    @Test
-    public void should_output_negative_1_0_with_backstage_passes_to_a_tafkal80etc_concert_0_4() {
-        Item[] items = new Item[] { new BackstageItem("Backstage passes to a TAFKAL80ETC concert", 0, 4) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.getItems()[0].getName());
-        assertThat(app.getItems()[0].getSellIn(), is(-1));
-        assertThat(app.getItems()[0].getQuality(), is(0));
+    private static Item createItem(String name, int sellIn, int quality) {
+        if (name.startsWith("Aged Brie")) {
+            return new AgedItem(sellIn, quality);
+        }
+        if (name.startsWith("Sulfuras")) {
+            return new SulfurasItem(sellIn, quality);
+        }
+        if (name.startsWith("Backstage passes")) {
+            return new BackstageItem(sellIn, quality);
+        }
+        return new OtherItem(name, sellIn, quality);
     }
 
-    @Test
-    public void should_output_0_4_with_sulfuras_hand_of_ragnaros_0_4() {
-        Item[] items = new Item[] { new SulfurasItem("Sulfuras, Hand of Ragnaros", 0, 4) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("Sulfuras, Hand of Ragnaros", app.getItems()[0].getName());
-        assertThat(app.getItems()[0].getSellIn(), is(0));
-        assertThat(app.getItems()[0].getQuality(), is(4));
-    }
+    private static class TestFixture {
+        String name;
+        int sellIn;
+        int quality;
+        int updatedSellIn;
+        int updatedQuality;
 
-    @Test
-    public void should_output_negative_1_4_with_sulfuras_hand_of_ragnaros_negative_1_4() {
-        Item[] items = new Item[] { new SulfurasItem("Sulfuras, Hand of Ragnaros", -1, 4) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("Sulfuras, Hand of Ragnaros", app.getItems()[0].getName());
-        assertThat(app.getItems()[0].getSellIn(), is(-1));
-        assertThat(app.getItems()[0].getQuality(), is(4));
-    }
+        private TestFixture(String name, int sellIn, int quality, int updatedSellIn, int updatedQuality) {
+            this.name = name;
+            this.sellIn = sellIn;
+            this.quality = quality;
+            this.updatedSellIn = updatedSellIn;
+            this.updatedQuality = updatedQuality;
+        }
 
-    @Test
-    public void should_output_negative_1_4_with_sulfuras_hand_of_ragnaros_negative_1_0() {
-        Item[] items = new Item[] { new SulfurasItem("Sulfuras, Hand of Ragnaros", -1, 0) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("Sulfuras, Hand of Ragnaros", app.getItems()[0].getName());
-        assertThat(app.getItems()[0].getSellIn(), is(-1));
-        assertThat(app.getItems()[0].getQuality(), is(0));
+        public static TestFixture createRegular(String name, int sellIn, int quality, int updatedSellIn, int updatedQuality) {
+            return new TestFixture(name, sellIn, quality, updatedSellIn, updatedQuality);
+        }
+
+        public static TestFixture createAgedBrie(int sellIn, int quality, int updatedSellIn, int updatedQuality) {
+            return new TestFixture("Aged Brie", sellIn, quality, updatedSellIn, updatedQuality);
+        }
+
+        public static TestFixture createSulfuras(int sellIn, int quality, int updatedSellIn, int updatedQuality) {
+            return new TestFixture("Sulfuras, Hand of Ragnaros", sellIn, quality, updatedSellIn, updatedQuality);
+        }
+
+        public static TestFixture createBackstagePass(int sellIn, int quality, int updatedSellIn, int updatedQuality) {
+            return new TestFixture("Backstage passes to a TAFKAL80ETC concert", sellIn, quality, updatedSellIn, updatedQuality);
+        }
     }
 
 }
